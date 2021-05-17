@@ -1,0 +1,11 @@
+{
+    "editor.fontSize": 18,
+    "files.associations": {
+        "keyboard.h": "c",
+        "print.h": "c",
+        "keyboardscancodetranslation.h": "c",
+        "stdint.h": "c",
+        "stddef.h": "c",
+        "stdbool.h": "c"
+    }
+}
