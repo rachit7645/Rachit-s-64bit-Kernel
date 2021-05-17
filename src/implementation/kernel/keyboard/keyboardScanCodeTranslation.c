@@ -1,5 +1,6 @@
 #include "keyboard/keyboardScanCodeTranslation.h"
 
+// Scancode translation table.
 const char ASCIITable[] = {
     0 ,  0 , '1', '2',
     '3', '4', '5', '6',

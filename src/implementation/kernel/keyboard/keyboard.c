@@ -8,7 +8,8 @@ bool isLeftShiftPressed;
 bool isRightShiftPressed;
 
 void handle_keyboard(uint8_t scancode) {
-   
+    
+    // Handle special characters like shift and control
     switch(scancode) {
         case LeftShift:
             isLeftShiftPressed = true;
@@ -34,6 +35,7 @@ void handle_keyboard(uint8_t scancode) {
             return;
     }
 
+    // Convert to ascii chars from scancodes.
     char ascii = translate(scancode, isLeftShiftPressed | isRightShiftPressed);
 
     if(ascii != 0) {
