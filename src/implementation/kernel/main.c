@@ -15,5 +15,5 @@ void kernel_main() {
 
     // Halt the system forever so that interrrupts do not crash the kernel
     while(true)
-    __asm__("hlt\n\t");
+    asm("hlt\n\t");
 }
