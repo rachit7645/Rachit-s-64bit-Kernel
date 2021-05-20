@@ -13,7 +13,7 @@ void kernel_main() {
     print_set_color(PRINT_COLOR_WHITE , PRINT_COLOR_BLACK);
     print_str("\n\nOSBETA>");
 
-    // Halt the system forever so that interrrupts do not crash the kernel
+    // Halt the system forever so that interrupts do not crash the kernel
     while(true)
     asm("hlt\n\t");
     

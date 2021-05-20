@@ -1,5 +1,6 @@
 #include <stdint.h>
 
+// A register structure passed by the cpu
 struct registers
 {
    uint32_t ds;                  // Data segment selector

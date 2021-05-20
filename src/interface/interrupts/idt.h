@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 
+// The ISR slots
 #define ISR0    0
 #define ISR1    1
 #define ISR2    2
@@ -35,6 +36,7 @@
 #define ISR30   30
 #define ISR31   31
 
+// The IDT slots
 #define IRQ0    32
 #define IRQ1    33
 #define IRQ2    34
@@ -55,6 +57,7 @@
 #define KERNEL_CODE_SEGMENT_OFFSET  0x08
 #define INTERRUPT_GATE              0x8E
 
+// IDT entry and pointer definiton
 struct idt_entry {
     uint16_t offset_low;
     uint16_t selector;
@@ -72,8 +75,10 @@ struct idt_ptr {
 }__attribute__((packed));
 typedef struct idt_ptr idt_ptr_t;
 
+// Prototypes
 void idt_init();
 
+// Extern asm functions
 extern void isr0();
 extern void isr1();
 extern void isr2();

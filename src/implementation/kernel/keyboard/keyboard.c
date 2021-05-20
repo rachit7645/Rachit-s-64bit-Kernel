@@ -13,26 +13,26 @@ void handle_keyboard(uint8_t scancode) {
     // Handle special characters like shift and control
     // The release scancode is the pressing scancode + 0x80
     switch(scancode) {
-        case LeftShift:
+        case LEFT_SHIFT:
             isLeftShiftPressed = true;
             return;
-        case LeftShift + 0x80:
+        case LEFT_SHIFT + 0x80:
             isLeftShiftPressed = false;
             return;
-        case RightShift:
+        case RIGHT_SHIFT:
             isRightShiftPressed = true;
             return;
-        case RightShift + 0x80:
+        case RIGHT_SHIFT + 0x80:
             isRightShiftPressed = false;
             return;
-        case Enter:
+        case ENTER:
             print_newline();
             print_terminal();
             return;
-        case Spacebar:
+        case SPACEBAR:
             print_char(' ');
             return;
-        case BackSpace:
+        case BACK_SPACE:
             clear_char();
             return;
     }

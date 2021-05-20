@@ -1,8 +1,9 @@
-global start
-extern long_mode_start
+global	start
+extern 	long_mode_start
 
 section .text
-bits 32
+bits 	32
+
 start:
 	mov 	esp, stack_top
 
@@ -128,27 +129,27 @@ stack_top:
 
 section .rodata
 gdt64:
-.null: equ $ - gdt64         ; The null descriptor.
-    dw 0xFFFF                    ; Limit (low).
-    dw 0                         ; Base (low).
-    db 0                         ; Base (middle)
-    db 0                         ; Access.
-    db 1                         ; Granularity.
-    db 0                         ; Base (high).
-.code_segment: equ $ - gdt64         ; The code descriptor.
-    dw 0                         ; Limit (low).
-    dw 0                         ; Base (low).
-    db 0                         ; Base (middle)
-    db 10011010b                 ; Access (exec/read).
-    db 10101111b                 ; Granularity, 64 bits flag, limit19:16.
-    db 0                         ; Base (high).
-.data: equ $ - gdt64         ; The data descriptor.
-    dw 0                         ; Limit (low).
-    dw 0                         ; Base (low).
-    db 0                         ; Base (middle)
-    db 10010010b                 ; Access (read/write).
-    db 00000000b                 ; Granularity.
-    db 0                         ; Base (high).
+.null: equ $ - gdt64         	; The null descriptor.
+    dw 0xFFFF                  	; Limit (low).
+    dw 0                        ; Base (low).
+    db 0                        ; Base (middle)
+    db 0                        ; Access.
+    db 1                        ; Granularity.
+    db 0                        ; Base (high).
+.code_segment: equ $ - gdt64    ; The code descriptor.
+    dw 0                        ; Limit (low).
+    dw 0                        ; Base (low).
+    db 0                        ; Base (middle)
+    db 10011010b                ; Access (exec/read).
+    db 10101111b                ; Granularity, 64 bits flag, limit19:16.
+    db 0                        ; Base (high).
+.data: equ $ - gdt64         	; The data descriptor.
+    dw 0                        ; Limit (low).
+    dw 0                        ; Base (low).
+    db 0                        ; Base (middle)
+    db 10010010b                ; Access (read/write).
+    db 00000000b                ; Granularity.
+    db 0                        ; Base (high).
 .pointer:
-	dw 	$ - gdt64 - 1 ; length
-	dq 	gdt64 ; address
+	dw 	$ - gdt64 - 1 			; length
+	dq 	gdt64 					; address

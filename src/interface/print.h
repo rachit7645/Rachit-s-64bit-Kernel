@@ -23,6 +23,15 @@ enum display_colors {
 	PRINT_COLOR_WHITE = 15,
 };
 
+static const size_t NUM_COLS = 80;      // In GRUB text mode there are 80 cols and
+static const size_t NUM_ROWS = 25;      // 25 rows
+
+struct Char {
+    uint8_t character;
+    uint8_t color;
+};
+typedef struct Char Char;		// Character type 
+
 // Prototypes
 
 void print_clear();
