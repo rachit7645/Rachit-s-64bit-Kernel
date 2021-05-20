@@ -6,6 +6,8 @@
         "keyboardscancodetranslation.h": "c",
         "stdint.h": "c",
         "stddef.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "strings.h": "c",
+        "string.h": "c"
     }
 }

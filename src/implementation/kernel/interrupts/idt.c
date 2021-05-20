@@ -3,15 +3,15 @@
 #include "interrupts/pic.h"
 #include <stdint.h>
 
-extern void idt_flush(uint64_t);
+extern void idt_flush(uint64_t);        // Our assembly lidt function to load the IDT
 
 static void init_idt();
 static void idt_set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags);
 static void init_keyboard();
 static void remap_pic();
 
-idt_entry_t idt_entries[256];
-idt_ptr_t   idt_pointer;
+idt_entry_t idt_entries[256];       // An IDT has 256 entries
+idt_ptr_t   idt_pointer;            // lidt takes the limit and the offset of the IDT
 
 void idt_init() {
     init_idt();
@@ -20,13 +20,17 @@ void idt_init() {
 
 static void init_idt()
 {
+    // Create the IDT pointer
     idt_pointer.limit = sizeof(idt_entry_t) * 256 - 1;
     idt_pointer.offset  = (uint64_t) &idt_entries;
 
+    // Allocate memory for the idt
     memset((uint8_t*)(uintptr_t) &idt_entries, 0, sizeof(idt_entry_t) * 256);
 
+    // Ramap the PIC
     remap_pic();
 
+    // Set up the interrupt gates 
     idt_set_gate(ISR0, (uint64_t) isr0, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
     idt_set_gate(ISR1, (uint64_t) isr1, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
     idt_set_gate(ISR2, (uint64_t) isr2, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
@@ -60,6 +64,7 @@ static void init_idt()
     idt_set_gate(ISR30, (uint64_t) isr30, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
     idt_set_gate(ISR31, (uint64_t) isr31, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
 
+    // Set up the IRQs
     idt_set_gate(IRQ0, (uint64_t) irq0, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
     idt_set_gate(IRQ1, (uint64_t) irq1, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
     idt_set_gate(IRQ2, (uint64_t) irq2, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
@@ -77,21 +82,25 @@ static void init_idt()
     idt_set_gate(IRQ14, (uint64_t) irq14, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
     idt_set_gate(IRQ15, (uint64_t) irq15, KERNEL_CODE_SEGMENT_OFFSET, INTERRUPT_GATE);
 
+    // Load the IDT
     idt_flush((uint64_t)&idt_pointer);
 }
 
 static void idt_set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags)
 {
+    // Set the offsets
     idt_entries[num].offset_low = base & 0xFFFF;
     idt_entries[num].offset_medium = (base >> 16) & 0xFFFF;
     idt_entries[num].offset_high = (base >> 32) & 0xFFFFFFFF;
 
+    // Reserved and zero entry
     idt_entries[num].ist = 0;
-
-    idt_entries[num].selector = sel;
     idt_entries[num].zero = 0;
-   // We must uncomment the OR below when we get to using user-mode.
-   // It sets the interrupt gate's privilege level to 3.
+
+    // The selector
+    idt_entries[num].selector = sel;
+    // We must uncomment the OR below when we get to using user-mode.
+    // It sets the interrupt gate's privilege level to 3.
     idt_entries[num].type_attribute  = flags /* | 0x60 */;
 }
 

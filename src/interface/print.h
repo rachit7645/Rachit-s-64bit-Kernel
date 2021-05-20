@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
+// All the colors supported in text mode
 enum display_colors {
     PRINT_COLOR_BLACK = 0,
 	PRINT_COLOR_BLUE = 1,
@@ -21,6 +22,8 @@ enum display_colors {
 	PRINT_COLOR_YELLOW = 14,
 	PRINT_COLOR_WHITE = 15,
 };
+
+// Prototypes
 
 void print_clear();
 void print_char(char character);

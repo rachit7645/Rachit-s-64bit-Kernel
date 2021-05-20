@@ -23,7 +23,7 @@ char translate(uint8_t scancode, bool uppercase) {
     if (scancode > 58) return 0;
 
     if (uppercase){
-        return ASCIITable[scancode] - 32;
+        return ASCIITable[scancode] - 32;       // Small character - 32 = Big character
     }
     else return ASCIITable[scancode];
 }

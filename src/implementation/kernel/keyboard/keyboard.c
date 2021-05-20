@@ -4,12 +4,14 @@
 #include "keyboard/keyboard.h"
 #include "print.h"
 
+// Define booleans for LSHIFT and RSHIFT
 bool isLeftShiftPressed;
 bool isRightShiftPressed;
 
 void handle_keyboard(uint8_t scancode) {
     
     // Handle special characters like shift and control
+    // The release scancode is the pressing scancode + 0x80
     switch(scancode) {
         case LeftShift:
             isLeftShiftPressed = true;
