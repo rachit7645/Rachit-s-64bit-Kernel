@@ -1,4 +1,5 @@
- %macro ISR_NOERRCODE 1  
+; ISR macros
+%macro ISR_NOERRCODE 1  
   global isr%1
 
   isr%1:
@@ -17,6 +18,7 @@
     jmp     isr_common_stub
 %endmacro
 
+; Popa and pusha macros
 %macro pushall 0
   push    rax
   push    rbx
@@ -37,6 +39,7 @@
   pop     rax
 %endmacro
 
+; ISRs
 ISR_NOERRCODE   0
 ISR_NOERRCODE   1
 ISR_NOERRCODE   2
@@ -106,6 +109,7 @@ extern  irq15_handler
 
 extern  isr_handler
 
+; Common ISR handler
 isr_common_stub:
     pushall
 
@@ -131,6 +135,7 @@ isr_common_stub:
     sti
     iretq
 
+; Irq handlers
 irq0:
   pushall
   call  irq0_handler
