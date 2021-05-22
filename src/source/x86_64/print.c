@@ -1,4 +1,5 @@
 #include "print.h"
+#include "convert_to_char.h"
 
 Char* buffer = (Char*) 0xb8000;
 size_t col = 0;
@@ -59,6 +60,10 @@ void print_str(char* str) {
         }
         print_char(character);
     }
+}
+
+void print_long(long number) {
+    print_str(long_to_char(number));
 }
 
 void print_set_color(uint8_t foreground, uint8_t background) {

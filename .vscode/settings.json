@@ -8,6 +8,8 @@
         "stddef.h": "c",
         "stdbool.h": "c",
         "strings.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "convert_to_char.h": "c",
+        "keyboard_scan_code_translation.h": "c"
     }
 }

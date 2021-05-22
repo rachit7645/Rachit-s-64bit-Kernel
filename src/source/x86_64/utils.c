@@ -19,9 +19,9 @@ inline uint16_t inw(uint16_t port) {
 }
 
 // Copy len bytes from src to dest.
-void memcpy(uint8_t *dest, const uint8_t *src, uint32_t len) {
-    const uint8_t *sp = (const uint8_t *)src;
-    uint8_t *dp = (uint8_t *)dest;
+void memcpy(uint8_t* dest, const uint8_t* src, uint32_t len) {
+    const uint8_t *sp = (const uint8_t*)src;
+    uint8_t *dp = (uint8_t*)dest;
     for(; len != 0; len--) *dp++ = *sp++;
 }
 
@@ -35,22 +35,22 @@ void memset(uint8_t *dest, uint8_t val, uint32_t len) {
 bool strcmp(char* first_string, char* second_string) {
     size_t i = 0;
     bool result = false;
+
     while(first_string[i] != '\0' && second_string[i] != '\0') {
-        if(first_string[i] != second_string[i]) {
+        if(first_string[i] != second_string[i]) 
             result = false;
-        }
         i++;
     }
-    if(!result) {
-        result = true;
-    }
+
+    if(!result) 
+        result = true;    
     
     return result;
 }
 
 // Copy the NULL-terminated string src into dest, and
 // return dest.
-char* strcpy(char *dest, const char *src) {
+char* strcpy(char* dest, const char* src) {
     do
     {
       *dest++ = *src++;
@@ -61,7 +61,7 @@ char* strcpy(char *dest, const char *src) {
 
 // Concatenate the NULL-terminated string src onto
 // the end of dest, and return dest.
-char* strcat(char *dest, const char *src) {
+char* strcat(char* dest, const char* src) {
     while (*dest != 0)
     {
         *dest = *dest++;

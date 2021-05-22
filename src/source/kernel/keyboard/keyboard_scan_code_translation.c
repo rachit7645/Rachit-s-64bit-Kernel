@@ -1,4 +1,4 @@
-#include "keyboard/keyboardScanCodeTranslation.h"
+#include "keyboard/keyboard_scan_code_translation.h"
 
 // Scancode translation table.
 const char ASCIITable[] = {

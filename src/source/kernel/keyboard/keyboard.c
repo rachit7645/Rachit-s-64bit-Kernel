@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <stdbool.h>
-#include "keyboard/keyboardScanCodeTranslation.h"
+#include "keyboard/keyboard_scan_code_translation.h"
 #include "keyboard/keyboard.h"
 #include "print.h"
 
