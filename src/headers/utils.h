@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 // Input and output functions
 
@@ -16,6 +17,6 @@ void memset(uint8_t *dest, uint8_t val, uint32_t len);
 
 // String functions
 
-int strcmp(char *str1, char *str2);
+bool strcmp(char* first_string, char* second_string);
 char* strcpy(char *dest, const char *src);
 char* strcat(char *dest, const char *src);

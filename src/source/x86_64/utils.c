@@ -1,20 +1,18 @@
-// common.c -- Defines some global functions.
-
 #include "utils.h"
-#include <stdint.h>
+#include "print.h"
 
 // Write a byte out to the specified port.
-void outb(uint16_t port, uint8_t value) {
+inline void outb(uint16_t port, uint8_t value) {
     asm volatile ("outb %1, %0" : : "dN" (port), "a" (value));
 }
 
-uint8_t inb(uint16_t port) {
+inline uint8_t inb(uint16_t port) {
     uint8_t ret;
     asm volatile("inb %1, %0" : "=a" (ret) : "dN" (port));
     return ret;
 }
 
-uint16_t inw(uint16_t port) {
+inline uint16_t inw(uint16_t port) {
     uint16_t ret;
     asm volatile ("inw %1, %0" : "=a" (ret) : "dN" (port));
     return ret;
@@ -29,29 +27,25 @@ void memcpy(uint8_t *dest, const uint8_t *src, uint32_t len) {
 
 // Write len copies of val into dest.
 void memset(uint8_t *dest, uint8_t val, uint32_t len) {
-    uint8_t *temp = (uint8_t *)dest;
+    uint8_t* temp = (uint8_t*)dest;
     for ( ; len != 0; len--) *temp++ = val;
 }
 
-// Compare two strings. Should return -1 if 
-// str1 < str2, 0 if they are equal or 1 otherwise.
-int strcmp(char *str1, char *str2) {
-      int i = 0;
-      int failed = 0;
-      while(str1[i] != '\0' && str2[i] != '\0')
-      {
-          if(str1[i] != str2[i])
-          {
-              failed = 1;
-              break;
-          }
-          i++;
-      }
-      // why did the loop exit?
-      if( (str1[i] == '\0' && str2[i] != '\0') || (str1[i] != '\0' && str2[i] == '\0') )
-          failed = 1;
-  
-      return failed;
+// Compare two strings, return true if they are same or false if they are not same
+bool strcmp(char* first_string, char* second_string) {
+    size_t i = 0;
+    bool result = false;
+    while(first_string[i] != '\0' && second_string[i] != '\0') {
+        if(first_string[i] != second_string[i]) {
+            result = false;
+        }
+        i++;
+    }
+    if(!result) {
+        result = true;
+    }
+    
+    return result;
 }
 
 // Copy the NULL-terminated string src into dest, and
@@ -61,7 +55,8 @@ char* strcpy(char *dest, const char *src) {
     {
       *dest++ = *src++;
     }
-    while (*src != 0);
+    while(*src != 0);
+    return dest;
 }
 
 // Concatenate the NULL-terminated string src onto
