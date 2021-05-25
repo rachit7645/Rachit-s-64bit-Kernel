@@ -38,7 +38,7 @@ bool strcmp(char* first_string, char* second_string) {
 
     while(first_string[i] != '\0' && second_string[i] != '\0') {
         if(first_string[i] != second_string[i]) 
-            result = false;
+            return result = false;
         i++;
     }
 

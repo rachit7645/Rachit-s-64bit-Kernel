@@ -37,7 +37,9 @@ typedef struct Char Char;		// Character type
 void print_clear();
 void print_char(char character);
 void print_str(char* string);
-void print_long(long number);
+void print_short(uint16_t number);
+void print_int(uint32_t number);
+void print_long(uint64_t number);
 void print_set_color(uint8_t foreground, uint8_t background);
 void print_newline();
 void print_terminal();

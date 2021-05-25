@@ -10,6 +10,7 @@
         "strings.h": "c",
         "string.h": "c",
         "convert_to_char.h": "c",
-        "keyboard_scan_code_translation.h": "c"
+        "keyboard_scan_code_translation.h": "c",
+        "string_utils.h": "c"
     }
 }

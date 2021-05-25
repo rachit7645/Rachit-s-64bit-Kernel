@@ -62,7 +62,15 @@ void print_str(char* str) {
     }
 }
 
-void print_long(long number) {
+void print_short(uint16_t number) {
+    print_str(short_to_char(number));
+}
+
+void print_int(uint32_t number) {
+    print_str((int_to_char(number)));
+}
+
+void print_long(uint64_t number) {
     print_str(long_to_char(number));
 }
 
