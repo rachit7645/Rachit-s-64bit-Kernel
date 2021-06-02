@@ -30,11 +30,12 @@ struct Char {
     uint8_t character;
     uint8_t color;
 };
-typedef struct Char Char;		// Character type 
+typedef struct Char Char;		// Character type
 
 // Prototypes
 
 void print_clear();
+void print_clear_panic(uint8_t color);
 void print_char(char character);
 void print_str(char* string);
 void print_short(uint16_t number);
@@ -44,3 +45,5 @@ void print_set_color(uint8_t foreground, uint8_t background);
 void print_newline();
 void print_terminal();
 void clear_char();
+void set_row(size_t set_row);
+void set_col(size_t set_col);
